@@ -1,0 +1,131 @@
+call pathogen#infect()
+
+let mapleader = "'"
+let maplocalleader = "\\"
+
+" For CtrlP Plugin
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_working_path_mode = 'ra'
+
+" Highlight opposing brackets
+set showmatch
+
+" Set Search highlight and incremental search
+set hlsearch
+set incsearch
+
+" general
+set number " line numbers
+set relativenumber
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set wrap
+set textwidth=95
+set formatoptions=qrn1
+set colorcolumn=94
+
+set ruler
+set cursorline
+
+"reformats page and go to last edit location
+map <Leader>ff gg=Gg;
+
+" highlight trailing whitespace
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
+
+" set up highlight group & retain through colorscheme changes
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+" clean trailing whitespace
+nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+"map <leader>ws :highlight clear ExtraWhitespace<CR>
+
+" set quickfix window to appear after grep invocation
+autocmd QuickFixCmdPost *grep* cwindow
+
+" split vim window
+nnoremap <leader>ev :split $MYVIMRC<cr>
+" source .vimrc file
+nnoremap <leader>sv :source $MYVIMRC<cr>
+" if open file is *.rb it will be run with 'ruby <filename>.rb'
+nnoremap <leader>r :!ruby %<cr>
+" Buffer previous and next shortcut
+map <leader>bn :bn<cr>
+map <leader>bp :bp<cr>
+
+" disable arrow keys
+inoremap <up> nop
+vnoremap <up> nop
+inoremap <down> nop
+vnoremap <down> nop
+inoremap <left> nop
+vnoremap <left> nop
+inoremap <right> nop
+vnoremap <right> nop
+
+" map 'jk' to <esc> key
+inoremap jk <esc>
+vnoremap jk <esc>
+
+" select and change to uppercase
+nnoremap <C-U> viwU
+" select
+nnoremap <Space> viw
+" delete word and put in Insert mode
+nnoremap dq dwi
+" delete line and create new line above in Insert mode
+nnoremap <leader>c ddO
+" move to start of line
+nnoremap <c-h> 0
+" move to next line
+nnoremap <c-l> $
+" select word and put quotes around it
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+" Insert a hash rocket with <c-l>
+inoremap <c-l> <space>=><space>
+
+" NerdTree mappings
+nnoremap <leader><leader> :NERDTreeToggle<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+
+" Run Ruby's bundle exec rspec
+"map <leader>t :!clear; bundle exec rspec<CR>
+"map <leader>t :Dispatch rspec %<CR>
+
+" Run Ruby's bundle exec rspec for the specific test where the line cursor is on
+"map <leader>rt ::execute '!rspec %:' . line(".")<CR>
+"map <leader>rt :execute /"Dispatch rspec %:" . line(".")<CR>
+
+" Run Elixir's 'mix test'
+"map <leader>t :!clear; mix test<CR>
+"map <leader>dt :Dispatch mix test %<CR>
+"map <leader>ds :exeute /"Dispatch mix test %:" . line(".")<CR>
+
+" RSpec.vim mappings
+"nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+nnoremap <Leader>a :call RunAllSpecs()<CR>
+
+" Colors
+" -----------------------
+"colorscheme onedark
+"set background=dark
+"syntax on
+syntax enable
+set background=dark
+let g:solarized_contrast = "high"
+let g:solarized_visibility = "high"
+"let g:solarized_termtrans = 1
+colorscheme solarized
+
+filetype plugin on
+filetype plugin indent on
+
+" copy between windows
+set clipboard+=unnamed

@@ -1,0 +1,19 @@
+[user]
+	name = sarahabimay
+	email = sarahabimay@gmail.com
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	pu = pull origin
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+[commit]
+	template = /Users/sarahjohnston/GitHubTemplate/git-commit-template.txt
+[color "grep"]
+    linenumber = yellow bold
+    match = red
+    filename = magenta
+
+[grep]
+	linenumber = true
