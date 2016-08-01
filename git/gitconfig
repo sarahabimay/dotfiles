@@ -1,6 +1,7 @@
 [user]
 	name = sarahabimay
 	email = sarahabimay@gmail.com
+
 [alias]
 	co = checkout
 	ci = commit
@@ -8,8 +9,13 @@
 	br = branch
 	pu = pull origin
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  l  = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short
+  ld = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --since=1.days
+  lw = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --since=1.weeks
+
 [commit]
 	template = /Users/sarahjohnston/GitHubTemplate/git-commit-template.txt
+
 [color "grep"]
     linenumber = yellow bold
     match = red
