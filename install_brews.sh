@@ -8,6 +8,8 @@ formulae=(
   "git"
   "maven"
   "ruby-build"
+  "the_silver_searcher"
+  "packer"
 )
 
 for formula in ${formulae[@]}

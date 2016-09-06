@@ -5,14 +5,13 @@ casks=(
 "1password"
 
 "google-chrome"
-"firefox"
 
 "iterm2"
 "alfred"
 "slack"
-
-"intellij-idea-ce"
-"sublime-text"
+"virtualbox"
+"vagrant"
+"vagrant-manager"
 )
 
 for cask in ${casks[@]}
