@@ -23,3 +23,5 @@
 
 [grep]
 	linenumber = true
+[core]
+	excludesfile = /Users/sarahabimay/.gitignore_global

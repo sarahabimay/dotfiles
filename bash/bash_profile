@@ -1,6 +1,9 @@
 alias java8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
 alias java7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
 
+# unix commands
+alias ls="ls -lhFG"
+
 # github commands
 alias gst="git st"
 alias gbr="git br"
@@ -12,9 +15,14 @@ alias gd="git diff"
 alias gr="git reset"
 alias gpu="git push origin"
 alias gpul="git pull origin"
+alias gchi="git check-ignore"
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# GO
+export GOPATH=~/Sarah/GO_PROJECTS
+export PATH=$PATH:$GOPATH/bin
