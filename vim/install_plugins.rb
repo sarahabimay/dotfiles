@@ -12,7 +12,9 @@ git_bundles = [
   "https://github.com/tpope/vim-dispatch.git",
   "https://github.com/tpope/vim-endwise.git",
   "https://github.com/thoughtbot/vim-rspec.git",
-  "git@github.com:junegunn/fzf.git"
+  "git@github.com:junegunn/fzf.git",
+  "git@github.com:airblade/vim-gitgutter.git",
+  "git@github.com:tpope/vim-fugitive.git"
 ]
 
 require 'fileutils'
