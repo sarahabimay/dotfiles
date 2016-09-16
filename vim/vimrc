@@ -1,4 +1,4 @@
-call pathogen#infect() 
+call pathogen#infect()
 let mapleader = "'"
 let maplocalleader = "\\"
 
@@ -15,7 +15,6 @@ set incsearch
 
 " general
 set number " line numbers
-" set relativenumber
 set autoindent
 set tabstop=2
 set shiftwidth=2
@@ -23,8 +22,9 @@ set expandtab
 set wrap
 set textwidth=95
 set formatoptions=qrn1
-set colorcolumn=94
 
+" ruler and cursor
+set colorcolumn=94
 set ruler
 set cursorline
 
@@ -41,7 +41,6 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " clean trailing whitespace
 nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
-"map <leader>ws :highlight clear ExtraWhitespace<CR>
 
 " set quickfix window to appear after grep invocation
 autocmd QuickFixCmdPost *grep* cwindow
@@ -50,8 +49,10 @@ autocmd QuickFixCmdPost *grep* cwindow
 nnoremap <leader>ev :split $MYVIMRC<cr>
 " source .vimrc file
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
 " if open file is *.rb it will be run with 'ruby <filename>.rb'
 nnoremap <leader>r :!ruby %<cr>
+
 " Buffer previous and next shortcut
 map <leader>bn :bn<cr>
 map <leader>bp :bp<cr>
@@ -146,6 +147,35 @@ colorscheme solarized
 
 filetype plugin on
 filetype plugin indent on
+
+" Git gutter
+" -----------------------
+let g:gitgutter_enabled = 1
+let g:gitgutter_highlight_lines = 0
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+
+Fugitive
+" -----------------------
+set diffopt+=vertical
+
+" Fugitive git bindings
+" -----------------------
+nnoremap <Leader>ga :Git add %:p<CR><CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gc :Gcommit -v -q<CR>
+nnoremap <Leader>gt :Gcommit -v -q %:p<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gw :Gwrite<CR><CR>
+nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <Leader>gp :Ggrep<Space>
+nnoremap <Leader>gm :Gmove<Space>
+nnoremap <Leader>gb :Git branch<Space>
+nnoremap <Leader>go :Git checkout<Space>
+nnoremap <Leader>gps :Dispatch! git push<CR>
+nnoremap <Leader>gpl :Dispatch! git pull<CR>
 
 " copy between windows
 set clipboard+=unnamed
