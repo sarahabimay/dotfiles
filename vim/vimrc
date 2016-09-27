@@ -1,3 +1,5 @@
+set noswapfile
+
 call pathogen#infect()
 let mapleader = "'"
 let maplocalleader = "\\"
