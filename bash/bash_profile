@@ -1,3 +1,7 @@
+export BASH_CONF="bash_profile"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
 alias java8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
 alias java7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
 
@@ -26,3 +30,22 @@ fi
 # GO
 export GOPATH=~/Sarah/GO_PROJECTS
 export PATH=$PATH:$GOPATH/bin
+
+# recursively create directories then cd into it
+function mcd () {
+  mkdir -p $1
+  cd $1
+}
+# start FLA VM
+function start_fla_vm() {
+  cd ~/Sarah/Client/development_vagrant/
+  ssh sjohnston@127.0.0.1 -p 2222 -i private_key
+}
+
+# source rapid_decision gems before running specs
+function _load_gems() {
+  export GEM_HOME=/home/sjohnston/pinkbox/rapid_decision/etc/localgems
+  export GEM_PATH=$GEM_HOME
+  export OLD_PATH=$PATH
+  export PATH=$GEM_HOME/bin:$PATH
+ }

@@ -1,4 +1,4 @@
-!/usr/bin/env ruby
+#!/usr/bin/env ruby
 # source: http://tammersaleh.com/posts/the-modern-vim-config-with-pathogen/
 
 git_bundles = [
@@ -6,12 +6,15 @@ git_bundles = [
   "https://github.com/kien/ctrlp.vim.git",
   "https://github.com/scrooloose/nerdtree.git",
   #"https://github.com/guns/vim-clojure-static.git",
-  "https://github.com/kien/rainbow_parentheses.vim.git"
-  "https://github.com/altercation/vim-colors-solarized.git"
-  "https://github.com/elixir-lang/vim-elixir.git"
+  "https://github.com/kien/rainbow_parentheses.vim.git",
+  "https://github.com/altercation/vim-colors-solarized.git",
+  "https://github.com/elixir-lang/vim-elixir.git",
   "https://github.com/tpope/vim-dispatch.git",
   "https://github.com/tpope/vim-endwise.git",
   "https://github.com/thoughtbot/vim-rspec.git",
+  "git@github.com:junegunn/fzf.git",
+  "git@github.com:airblade/vim-gitgutter.git",
+  "git@github.com:tpope/vim-fugitive.git"
 ]
 
 require 'fileutils'
