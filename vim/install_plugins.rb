@@ -31,5 +31,5 @@ git_bundles.each do |url|
   dir = url.split('/').last.sub(/\.git$/, '')
   puts "unpacking #{url} into #{dir}"
   `git clone #{url} #{dir}`
-  FileUtils.rm_rf(File.join(dir, ".git"))
+  #FileUtils.rm_rf(File.join(dir, ".git"))
 end

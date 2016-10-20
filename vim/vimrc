@@ -181,3 +181,5 @@ nnoremap <Leader>gpl :Dispatch! git pull<CR>
 
 " copy between windows
 set clipboard+=unnamed
+
+nnoremap <C-W>o <Nop>
