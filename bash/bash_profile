@@ -1,5 +1,8 @@
 export BASH_CONF="bash_profile"
 
+export GIT_PS1_SHOWCOLORHINTS=1
+export PROMPT_COMMAND='__git_ps1 "dev-sjohnston-ub12 -  \[\e[32;1m\]\w\[\e[0m\]" "\[\e[37;1m\] $ " '
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 alias java8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
@@ -20,7 +23,7 @@ alias gr="git reset"
 alias gpu="git push origin"
 alias gpul="git pull origin"
 alias gchi="git check-ignore"
-
+alias glog="git log --graph --all --pretty=format:'%C(yellow)%h%Creset%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
