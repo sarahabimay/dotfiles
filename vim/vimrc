@@ -104,9 +104,9 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 "map <leader>rt :execute /"Dispatch rspec %:" . line(".")<CR>
 
 " Run Elixir's 'mix test'
-"map <leader>t :!clear; mix test<CR>
-"map <leader>dt :Dispatch mix test %<CR>
-"map <leader>ds :exeute /"Dispatch mix test %:" . line(".")<CR>
+map <leader>t :!clear; mix test<CR>
+map <leader>dt :Dispatch mix test %<CR>
+" map <leader>ds :exeute /"Dispatch mix test %:" . line(".")<CR>
 
 " RSpec.vim mappings
 "nnoremap <Leader>t :call RunCurrentSpecFile()<CR>

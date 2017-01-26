@@ -1,4 +1,6 @@
 export BASH_CONF="bashrc"
+# Remove duplicate commands from bash history
+export HISTCONTROL=ignoreboth:erasedups
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
@@ -36,6 +38,12 @@ function mcd () {
   mkdir -p $1
   cd $1
 }
+
+# search for processes running on a port
+function find_port () {
+ lsof -i:$1
+}
+
 # start FLA VM
 function start_fla_vm() {
   cd ~/Sarah/Client/development_vagrant/
