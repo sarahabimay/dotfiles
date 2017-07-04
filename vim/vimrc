@@ -30,6 +30,17 @@ set colorcolumn=94
 set ruler
 set cursorline
 
+set nocompatible
+filetype off
+
+"ALE for linters
+let &runtimepath.=',~/.vim/bundle/ale'
+let g:ale_sign_column_always = 1
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+filetype plugin on
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 "reformats page and go to last edit location
 map <Leader>ff gg=Gg;
 
