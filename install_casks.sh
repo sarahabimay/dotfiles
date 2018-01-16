@@ -9,6 +9,7 @@ casks=(
 "iterm2"
 "alfred"
 "slack"
+"spectacle"
 "virtualbox"
 "vagrant"
 "vagrant-manager"
