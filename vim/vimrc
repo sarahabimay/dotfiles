@@ -154,14 +154,6 @@ let g:rbpt_colorpairs = [
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 
-" Colors
-" -----------------------
-syntax enable
-set background=dark
-let g:solarized_contrast = "high"
-let g:solarized_visibility = "high"
-colorscheme solarized
-
 filetype plugin on
 filetype plugin indent on
 
@@ -203,25 +195,32 @@ nnoremap <C-W>o <Nop>
 " -----------------
 
 call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'fatih/vim-go'
-Plug 'junegunn/fzf.vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-projectionist'
-Plug 'thoughtbot/vim-rspec'
-Plug 'w0rp/ale'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'chriskempson/base16-vim'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'elixir-lang/vim-elixir'
+  Plug 'fatih/vim-go'
+  Plug 'junegunn/fzf.vim'
+  Plug 'kien/rainbow_parentheses.vim'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'mxw/vim-jsx'
+  Plug 'pangloss/vim-javascript'
+  Plug 'scrooloose/nerdtree'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-projectionist'
+  Plug 'thoughtbot/vim-rspec'
+  Plug 'w0rp/ale'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
+" Colors
+" -----------------------
+syntax enable
+set background=dark
+let g:solarized_contrast = "high"
+let g:solarized_visibility = "high"
+colorscheme solarized
