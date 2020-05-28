@@ -1,6 +1,6 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -77,15 +77,18 @@ set incsearch
 set clipboard+=unnamed
 
 "reformats page and go to last edit location
-map <Leader>ff gg=Gg;
+map <leader>ff gg=Gg;
 
 " split vim window
 nnoremap <leader>ev :split $MYVIMRC<cr>
 " source .vimrc file
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" do not close window
-nnoremap <C-W>o <Nop>
+" delete line and create new line above in Insert mode
+nnoremap <leader>c ddO
+
+" select word and put quotes around it
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 
 " clean trailing whitespace
 nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
@@ -93,6 +96,12 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " Buffer previous and next shortcut
 map <leader>bn :bn<cr>
 map <leader>bp :bp<cr>
+
+" create new directory and file
+map <leader>cf :!mkdir -p %:h<cr><cr>
+
+" do not close window
+nnoremap <C-W>o <Nop>
 
 " disable arrow keys
 inoremap <up> nop
@@ -114,14 +123,10 @@ nnoremap <C-U> viwU
 nnoremap <Space> viw
 " delete word and put in Insert mode
 nnoremap dq dwi
-" delete line and create new line above in Insert mode
-nnoremap <leader>c ddO
 " move to start of line
 nnoremap <c-h> 0
 " move to next line
 nnoremap <c-l> $
-" select word and put quotes around it
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 " Insert a hash rocket with <c-l>
 inoremap <c-l> <space>=><space>
 
