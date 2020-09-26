@@ -28,6 +28,9 @@ function mcd () {
 function find_port () {
  lsof -i:$1
 }
+
+function shell () {
+ chsh -s /bin/$1
 }
 
 export PATH="/usr/local/sbin:$PATH"

@@ -3,6 +3,7 @@ alias java7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
 
 # unix commands
 alias ls="ls -lhFG"
+alias latr="ls -latr --color=auto"
 
 # github commands
 alias gst="git st"

@@ -37,6 +37,9 @@ function find_port () {
  lsof -i:$1
 }
 
+function shell () {
+ chsh -s /bin/$1
 }
 
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
