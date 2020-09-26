@@ -1,78 +1,107 @@
-set noswapfile
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 let mapleader = "'"
 let maplocalleader = "\\"
 
-" For CtrlP Plugin
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_working_path_mode = 'ra'
-
-" Highlight opposing brackets
-set showmatch
-
-" Set Search highlight and incremental search
-set hlsearch
-set incsearch
-
-" general
-set number " line numbers
-set autoindent
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set wrap
-set textwidth=95
-set formatoptions=qrn1
-
-" ruler and cursor
-set colorcolumn=94
-set ruler
-set cursorline
-
 set nocompatible
 filetype off
 
-"ALE for linters
-let &runtimepath.=',~/.vim/bundle/ale'
-let g:ale_sign_column_always = 1
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" -----------------
+" vim plug
+" -----------------
+call plug#begin('~/.vim/plugged')
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'fatih/vim-go'
+Plug 'junegunn/fzf.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
+Plug 'thoughtbot/vim-rspec'
+Plug 'w0rp/ale'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ElmCast/elm-vim'
+call plug#end()
+
+set rtp+=~/usr/local/opt/fzf
+
+" general
+set number " line numbers
+set noswapfile " don't create .swp files
+set nobackup   " don't create <file>~ backup files
+
 filetype plugin on
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+filetype indent on
+
+set autoread     " re-read externally changed files
+
+set t_Co=256     " enable 256 colors
+
+" ruler and cursor
+set ruler        " enable line/column display in the bottom right corner
+set colorcolumn=94
+set cursorline
+
+set showmatch " show matching parenthesis
+set mat=2
+
+set noerrorbells " no sounds.
+
+set expandtab
+set autoindent
+set wrap
+set tabstop=2
+set shiftwidth=2
+set textwidth=95
+set formatoptions=qrn1
+
+" searching
+set hlsearch
+set incsearch
+
+" copy between windows
+set clipboard+=unnamed
 
 "reformats page and go to last edit location
-map <Leader>ff gg=Gg;
-
-" highlight trailing whitespace
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
-
-" set up highlight group & retain through colorscheme changes
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-
-" clean trailing whitespace
-nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
-
-" set quickfix window to appear after grep invocation
-autocmd QuickFixCmdPost *grep* cwindow
+map <leader>ff gg=Gg;
 
 " split vim window
 nnoremap <leader>ev :split $MYVIMRC<cr>
 " source .vimrc file
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" if open file is *.rb it will be run with 'ruby <filename>.rb'
-nnoremap <leader>r :!ruby %<cr>
+" delete line and create new line above in Insert mode
+nnoremap <leader>c ddO
+
+" select word and put quotes around it
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+" clean trailing whitespace
+nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 
 " Buffer previous and next shortcut
 map <leader>bn :bn<cr>
 map <leader>bp :bp<cr>
+
+" create new directory and file
+map <leader>cf :!mkdir -p %:h<cr><cr>
+
+" do not close window
+nnoremap <C-W>o <Nop>
 
 " disable arrow keys
 inoremap <up> nop
@@ -94,133 +123,49 @@ nnoremap <C-U> viwU
 nnoremap <Space> viw
 " delete word and put in Insert mode
 nnoremap dq dwi
-" delete line and create new line above in Insert mode
-nnoremap <leader>c ddO
 " move to start of line
 nnoremap <c-h> 0
 " move to next line
 nnoremap <c-l> $
-" select word and put quotes around it
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 " Insert a hash rocket with <c-l>
 inoremap <c-l> <space>=><space>
 
-" NerdTree mappings
-nnoremap <leader><leader> :NERDTreeToggle<CR>
-nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
+" center every search result in the middle of the screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
-" Run Ruby's bundle exec rspec
-"map <leader>t :!clear; bundle exec rspec<CR>
-"map <leader>t :Dispatch rspec %<CR>
+" set quickfix window to appear after grep invocation
+autocmd QuickFixCmdPost *grep* cwindow
 
-" Run Ruby's bundle exec rspec for the specific test where the line cursor is on
-"map <leader>rt ::execute '!rspec %:' . line(".")<CR>
-"map <leader>rt :execute /"Dispatch rspec %:" . line(".")<CR>
+" highlight unwanted whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
-" Run Elixir's 'mix test'
-map <leader>t :!clear; mix test<CR>
-map <leader>dt :Dispatch mix test %<CR>
-" map <leader>ds :exeute /"Dispatch mix test %:" . line(".")<CR>
-
-" RSpec.vim mappings
-"nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
-nnoremap <Leader>a :call RunAllSpecs()<CR>
-
-"Clojure
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-
-filetype plugin on
-filetype plugin indent on
-
-" Git gutter
-" -----------------------
-let g:gitgutter_enabled = 1
-let g:gitgutter_highlight_lines = 0
-let g:gitgutter_realtime = 1
-let g:gitgutter_eager = 1
-
-" Fugitive
-" -----------------------
-set diffopt+=vertical
-
-" Fugitive git bindings
-" -----------------------
-nnoremap <Leader>ga :Git add %:p<CR><CR>
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gc :Gcommit -v -q<CR>
-nnoremap <Leader>gt :Gcommit -v -q %:p<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>ge :Gedit<CR>
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gw :Gwrite<CR><CR>
-nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <Leader>gp :Ggrep<Space>
-nnoremap <Leader>gm :Gmove<Space>
-nnoremap <Leader>gb :Git branch<Space>
-nnoremap <Leader>go :Git checkout<Space>
-nnoremap <Leader>gps :Dispatch! git push<CR>
-nnoremap <Leader>gpl :Dispatch! git pull<CR>
-
-" copy between windows
-set clipboard+=unnamed
-
-nnoremap <C-W>o <Nop>
-
-" vim plug
-" -----------------
-
-call plug#begin('~/.vim/plugged')
-  Plug 'airblade/vim-gitgutter'
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'chriskempson/base16-vim'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'elixir-lang/vim-elixir'
-  Plug 'fatih/vim-go'
-  Plug 'junegunn/fzf.vim'
-  Plug 'kien/rainbow_parentheses.vim'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'mxw/vim-jsx'
-  Plug 'pangloss/vim-javascript'
-  Plug 'scrooloose/nerdtree'
-  Plug 'tpope/vim-dispatch'
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-projectionist'
-  Plug 'thoughtbot/vim-rspec'
-  Plug 'w0rp/ale'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-call plug#end()
+" set up highlight group & retain through colorscheme changes
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Colors
 " -----------------------
 syntax enable
-set background=dark
-let g:solarized_contrast = "high"
-let g:solarized_visibility = "high"
-colorscheme solarized
+"let base16colorspace=256
+"set background=dark
+"let g:solarized_contrast = "high"
+"let g:solarized_visibility = "high"
+colorscheme zellner
+
+let s:config_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+exec "source " . s:config_path . '/vimrc-nerdtree'
+exec "source " . s:config_path . '/vimrc-fugitive'
+exec "source " . s:config_path . '/vimrc-gitgutter'
+exec "source " . s:config_path . '/vimrc-ale'
+exec "source " . s:config_path . '/vimrc-clojure'
+exec "source " . s:config_path . '/vimrc-fzf'
