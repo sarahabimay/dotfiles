@@ -1,8 +1,7 @@
 export BASH_CONF="bash_profile"
+#echo $BASH_CONF
 # remove duplicate commands from bash history
 export HISTCONTROL=ignoreboth:erasedups
-# erlang version manager
-source $HOME/.evm/scripts/evm
 
 if [ -f ~/dotfiles/git/git-prompt.sh ]; then
 . ~/dotfiles/git/git-prompt.sh
@@ -10,9 +9,6 @@ fi
 
 export GIT_PS1_SHOWCOLORHINTS=1
 export PROMPT_COMMAND='__git_ps1 "\[\e[32;1m\]\w\[\e[0m\]" "\[\e[37;1m\] $ " '
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.cargo/bin" # Add RVM to PATH for scripting
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
@@ -23,12 +19,6 @@ if [ -f ~/.git-completion.bash ]; then
 . ~/.git-completion.bash
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# GO
-export GOPATH=~/Sarah/GO_PROJECTS
-export PATH=$PATH:$GOPATH/bin
-
 # recursively create directories then cd into it
 function mcd () {
   mkdir -p $1
@@ -38,29 +28,6 @@ function mcd () {
 function find_port () {
  lsof -i:$1
 }
-# start flash-uw-dev vm
-function sshfla() {
-  cd ~/Sarah/Client/flash-uw-dev/vagrant
-  vagrant up
-  vagrant ssh
-}
-# start flash-dev vm
-function sshflo() {
-  cd ~/Sarah/Client/flash-dev
-  bin/start
-  bin/ssh
-}
-# start RapidApp FLA VM
-function start_rapidapp() {
-  cd ~/Sarah/Client/development_vagrant/
-  ssh sjohnston@127.0.0.1 -p 2222 -i private_key
-}
-# Rapid app - source rapid_decision gems before running specs
-function _load_gems() {
-  export GEM_HOME=/home/sjohnston/pinkbox/rapid_decision/etc/localgems
-  export GEM_PATH=$GEM_HOME
-  export OLD_PATH=$PATH
-  export PATH=$GEM_HOME/bin:$PATH
 }
 
 export PATH="/usr/local/sbin:$PATH"
