@@ -1,0 +1,108 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export ZDOTDIR=$HOME
+echo "ZSHRC"
+
+export ZSH="/Users/sarahabimay/.oh-my-zsh"
+
+export TERM='xterm-256color'
+export LANG="en_US.UTF-8"
+export EDITOR=vim
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="random"
+#ZSH_THEME="af-magic"
+
+unsetopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+export HISTSIZE=2000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin:$PATH
+
+alias ll='ls -lh --color=auto'
+alias la='ls -lah --color=auto'
+alias latr='ls -latr --color=auto'
+alias ga='git add'
+alias gap='git add -p'
+alias gst='git status'
+alias gd='git diff'
+alias gr='git reset'
+alias gc='git commit -v'
+alias gca='git commit -a'
+alias gpu='git push origin'
+alias gls='git --no-pager log --reverse'
+alias gpul='git pull -r origin'
+alias gl='git log --graph --decorate --pretty=oneline --abbrev-commit'
+alias glog="git log --graph --all --pretty=format:'%C(yellow)%h%Creset%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+
+alias tac='tail -r'
+alias pu='vendor/bin/phpunit'
+alias be='bundle exec'
+alias gradlew='./gradlew'
+alias whichport='lsof -i ":$1" | grep LISTEN'
+
+function mcd() { mkdir -p $1 && cd $1 } 
+function reload-shell() { exec $SHELL -l }
+
+autoload -U compinit && compinit
+zmodload -i zsh/complist
+
+setopt PROMPT_SUBST
+source ~/dotfiles/zsh/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+autoload -U colors  && colors
+PROMPT='%F{237}------------------------------------------------------------%f
+%F{033}%~\
+$(__git_ps1 " (%s)") \
+%F{004}%(!.#.»)%f '
+
+RPROMPT=''
+
+
+# configure emacs mode
+bindkey -e
+export KEYTIMEOUT=1
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+bindkey "^[[3~" delete-char
+
+stty -ixon #disables software control flow (ctrl+s)
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# For MRDP toolchain - do not commit to dotfiles
+export PATH=$PATH:/Users/sarahabimay/Sarah/Client/dp-toolchain
+function session-manager-help {
+  echo "dp web <aws-servie e.g. s3/cloudwatch/secretsmanager> <profile e.g. dev/stage/prod>"
+  echo "dp secrets get <secret-name e.g. questions-db-host/user/name/password> <profile>"
+  echo "dp find-bastion <profile> - finds bastion index for session-manager"
+  echo "Connect to bastion with session manager: aws ssm start-session --target <bastion-instance-id>"
+  echo "session manager db connection command: psql -h <host-name> -U <user-name-secret> -d <db-name-secret>"
+}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
