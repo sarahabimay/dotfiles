@@ -1,4 +1,6 @@
-let g:rbpt_max = 16
+" Evaluate Clojure buffers on load
+autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
+
 let g:rbpt_loadcmd_toggle = 0
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -20,4 +22,6 @@ let g:rbpt_colorpairs = [
     \ ]
 
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
+au Syntax clojure RainbowParenthesesLoadRound
+au Syntax clojure RainbowParenthesesLoadSquare
+au Syntax clojure RainbowParenthesesLoadBraces

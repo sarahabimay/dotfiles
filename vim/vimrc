@@ -26,6 +26,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-classpath'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
@@ -35,6 +38,9 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'w0rp/ale'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ElmCast/elm-vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'guns/vim-clojure-static'
+Plug 'guns/vim-clojure-highlight'
 call plug#end()
 
 set rtp+=~/usr/local/opt/fzf
@@ -81,6 +87,7 @@ map <leader>ff gg=Gg;
 
 " split vim window
 nnoremap <leader>ev :split $MYVIMRC<cr>
+
 " source .vimrc file
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
