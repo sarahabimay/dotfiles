@@ -93,8 +93,9 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
-# For MRDP toolchain - do not commit to dotfiles
-export PATH=$PATH:/Users/sarahabimay/Sarah/Client/dp-toolchain
+# Apache Groovy
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
 function session-manager-help {
   echo "dp web <aws-servie e.g. s3/cloudwatch/secretsmanager> <profile e.g. dev/stage/prod>"
   echo "dp secrets get <secret-name e.g. questions-db-host/user/name/password> <profile>"
@@ -102,6 +103,12 @@ function session-manager-help {
   echo "Connect to bastion with session manager: aws ssm start-session --target <bastion-instance-id>"
   echo "session manager db connection command: psql -h <host-name> -U <user-name-secret> -d <db-name-secret>"
 }
+
+# For MRDP toolchain - do not commit to dotfiles
+export PATH=$PATH:/Users/sarahabimay/Sarah/Client/dp-toolchain
+
+# For go binary
+export PATH=$PATH:/Users/sarahabimay/go/bin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
