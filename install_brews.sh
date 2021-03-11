@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 formulae=(
-  "caskroom/cask/brew-cask"
+  "homebrew/cask"
   "tmux"
   "reattach-to-user-namespace"
   "chruby"
