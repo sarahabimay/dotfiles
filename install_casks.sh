@@ -13,10 +13,12 @@ casks=(
 "virtualbox"
 "vagrant"
 "vagrant-manager"
+"adoptopenjdk"
+"AdoptOpenJDK/openjdk/adoptopenjdk8"
 )
 
 for cask in ${casks[@]}
 do
   echo "Installing: ${cask}"
-  brew cask install $cask
+  brew install --cask $cask
 done
