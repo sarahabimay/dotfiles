@@ -21,7 +21,7 @@ create_link_if_missing() {
 
 dir=~/dotfiles                        # dotfiles directory
 olddir=~/dotfiles_old                 # old dotfiles backup directory
-files="gitconfig gitignore_global bash_aliases bash_profile bashrc vimrc vim tmux.conf"    # list of files/folders to symlink in homedir
+files="gitconfig gitignore_global bash_aliases vimrc vim tmux.conf"    # list of files/folders to symlink in homedir
 
 ##########
 

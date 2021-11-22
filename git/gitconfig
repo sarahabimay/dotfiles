@@ -14,7 +14,7 @@
   lw = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --since=1.weeks
 
 [commit]
-	template = /Users/sarahjohnston/GitHubTemplate/git-commit-template.txt
+	template = /Users/$USER/GitHubTemplate/git-commit-template.txt
 
 [color "grep"]
     linenumber = yellow bold
@@ -24,7 +24,7 @@
 [grep]
 	linenumber = true
 [core]
-	excludesfile = /Users/sarahabimay/.gitignore_global
+	excludesfile = /Users/$USER/.gitignore_global
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -38,4 +38,5 @@
 	allowed = AKIAIOSFODNN7EXAMPLE
 	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 [init]
-	templateDir = /Users/sarahabimay/.git-templates/git-secrets
+	templateDir = /Users/$USER/.git-templates/git-secrets
+	defaultBranch = main
