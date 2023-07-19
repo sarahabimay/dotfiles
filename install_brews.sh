@@ -24,6 +24,8 @@ formulae=(
   "kafka"
   "go"
   "clojure/tools/clojure"
+  "gh"
+  "dotnet"
 )
 
 for formula in ${formulae[@]}
