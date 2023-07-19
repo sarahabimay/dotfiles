@@ -29,3 +29,10 @@ if [ ! -f $HOME/.gitconfig ]; then
 else
   echo "Skipping .gitconfig"
 fi
+
+if [ ! -f $HOME/.zshrc ]; then
+  echo "Linking .zshrc"
+  ln -s $base_dir/zsh/zshrc_lilm $HOME/.zshrc
+else
+  echo "Skipping .zshrc"
+fi
